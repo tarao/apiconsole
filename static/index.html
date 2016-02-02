@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html><head>
+  <link rel="stylesheet" href="console.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.4.1/octicons.min.css" />
+  <title>API Console</title>
+</head><body>
+  <div id="container">
+    <h1><span class="mega-octicon octicon-terminal"></span> API Console</h1>
+
+    <section id="request">
+      <span class="collapser"></span>
+      <form class="input">
+        <div class="request">
+          <label class="selector"><select name="method" class="method">
+            <option value="GET">GET</option>
+            <option value="HEAD">HEAD</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="OPTIONS">OPTIONS</option>
+            <option value="PATCH">PATCH</option>
+          </select></label>
+          <input name="path" class="path" type="text" placeholder="/your/api" value="" />
+        </div>
+
+        <div class="request">
+          <section class="headers">
+            <h3>Headers</h3>
+            <dl>
+              <template style="display: none">
+                <dt class="name"><input type="text" placeholder="X-Request-Id" data-bind="@value=name" /></dt>
+                <dd class="value"><input type="text" placeholder="1234" data-bind="@value=value" /></dd>
+              </template>
+            </dl>
+          </section>
+
+          <section class="parameters">
+            <h3>Query parameters</h3>
+            <dl>
+              <template style="display: none">
+                <dt class="name"><input type="text" placeholder="word" data-bind="@value=name" /></dt>
+                <dd class="value"><input type="text" placeholder="functional" data-bind="@value=value" /></dd>
+              </template>
+            </dl>
+          </section>
+
+          <section class="body">
+            <h3>Body</h3>
+            <dl>
+              <template style="display: none">
+                <dt class="name"><input type="text" placeholder="tags[]" data-bind="@value=name" /></dt>
+                <dd class="value"><input type="text" placeholder="scala, monad" data-bind="@value=value" /></dd>
+              </template>
+            </dl>
+          </section>
+        </div>
+
+        <div class="action">
+          <input class="send" type="submit" value="Send" />
+          <input class="clear" type="button" value="Clear" />
+          <button class="export octicon octicon-link"></button>
+          <button class="import octicon octicon-arrow-down"></button>
+        </div>
+      </form>
+    </section>
+
+    <section id="export" class="dialog" style="display: none">
+      <form class="form">
+        <label class="permalink"><span>Permalink</span><input type="text" value="" /><button class="octicon octicon-clippy copy"></button></label>
+        <label class="curl"><span><code>curl</code></span><input type="text" value="" /><button class="octicon octicon-clippy copy"></button></label>
+        <label class="http"><span>HTTP</span><textarea></textarea><button class="octicon octicon-clippy copy"></button></label>
+      </form>
+      <div class="overlay"></div>
+    </section>
+
+    <section id="import" class="dialog" style="display: none">
+      <form class="form">
+        <label class="http"><span>JSON</span><textarea placeholder="{&quot;tags&quot;:[&quot;scala&quot;,&quot;monad&quot;]}"></textarea></label>
+        <input type="submit" value="Import" />
+      </form>
+      <div class="overlay"></div>
+    </section>
+
+    <section id="response"></section>
+  </div>
+
+  <script src='console.js'></script>
+  <script src='console_highlight.js'></script>
+</body></html>

@@ -1,0 +1,352 @@
+@charset "UTF-8";
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Meiryo", "メイリオ", "MS P Gothic", "ＭＳ Ｐゴシック", sans-serif;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+*::-moz-placeholder {
+  color: #9cd;
+  opacity: 0.5;
+  padding: 0 1.2em 0 5px;
+}
+*::-webkit-input-placeholder {
+  color: #9cd;
+  opacity: 0.5;
+}
+*:-ms-input-placeholder {
+  color: #9cd;
+  opacity: 0.5;
+}
+*:placeholder-shown {
+  color: #9cd;
+  opacity: 0.5;
+}
+
+input,
+select,
+option,
+textarea {
+  font-size: 100%;
+  line-height: normal;
+  font-family: monospace;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: calc(100% - 4em);
+  height: calc(100% - 4em);
+  margin: 2em;
+}
+
+#request {
+  flex-basis: auto;
+  margin-bottom: 2em;
+}
+
+#request .collapser {
+  display: block;
+  position: relative;
+}
+#request .collapser:after {
+  display: block;
+  content: "▾";
+  position: absolute;
+  left: -20px;
+  width: 20px;
+  font-size: 150%;
+  cursor: pointer;
+}
+#request .collapser.collapsed:after {
+  content: "▸";
+}
+
+#request .collapsed ~ .input > * {
+  display: none;
+}
+#request .collapsed ~ .input > .request:first-child {
+  display: flex;
+}
+
+#response {
+  flex-grow: 1;
+  min-height: 400px;
+}
+
+iframe {
+  border: none;
+  box-shadow: 2px 2px 5px #ccc;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.request {
+  display: flex;
+  flex-direction: row;
+}
+
+.request > * {
+  flex-grow: 1;
+  margin-right: 2em;
+}
+
+.request > *:last-child {
+  margin-right: 0;
+}
+
+.request .import {
+  flex-grow: 0;
+}
+
+.request select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid #aaa;
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: inherit;
+  box-sizing: content-box;
+  padding-right: 20px !important;
+}
+.request select::-ms-expand {
+  display: none;
+}
+.request label.selector {
+  position: relative;
+  flex-grow: 0;
+  margin-right: 5px;
+}
+.request label.selector:last-child {
+  margin-right: 0;
+}
+.request label.selector:after {
+  display: block;
+  position: absolute;
+  content: "▾";
+  color: #9cd;
+  top: 5px;
+  right: 0;
+  width: 20px;
+  pointer-events: none;
+}
+
+.request select,
+.request .path,
+.dialog input[type="text"],
+.dialog textarea {
+  padding: 5px;
+}
+
+.request dl {
+  margin-top: 0.5em;
+}
+
+.request .path,
+.request .name,
+.request .value,
+.dialog input[type="text"],
+.dialog textarea {
+  border: 1px solid #aaa;
+  box-sizing: border-box;
+  box-shadow: inset 0 2px 0 rgba(187, 187, 187, 0.25);
+  border-radius: 3px;
+}
+
+.request .name {
+  display: block;
+  position: relative;
+  clear: both;
+  float: left;
+  width: 50%;
+  border-radius: 3px 0 0 3px;
+  border-right: none;
+  margin-bottom: 0.5em;
+}
+.request .name:last-child {
+  margin-bottom: 0;
+}
+.request .name:after {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 5px 0.5em 5px 0;
+  content: ":";
+  color: #9cd;
+  font-family: monospace;
+}
+.request .parameters .name:after {
+  content: "=";
+}
+
+.request .value {
+  display: block;
+  float: right;
+  width: 50%;
+  margin: 0;
+  border-radius: 0 3px 3px 0;
+  border-left: none;
+}
+
+.request .name input,
+.request .value input {
+  width: 100%;
+  margin: 5px 0;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border: none;
+  background-color: inherit;
+
+}
+.request .name input {
+  padding: 0 1.2em 0 5px;
+}
+
+#request input[type="submit"],
+#request input[type="button"],
+#import.dialog .form input[type="submit"] {
+  height: 34px;
+  padding: 6px 15px;
+  border: none;
+  border-radius: 3px;
+  background-color: #ddd;
+  color: #666;
+  font-weight: bold;
+  cursor: pointer;
+}
+#request input[type="submit"]:hover,
+#request input[type="button"]:hover,
+button.export:hover,
+button.import:hover,
+#import.dialog .form input[type="submit"]:hover {
+  background-color: #59c9bb;
+  color: #fff;
+  transition: all 0.2s ease-out;
+}
+#request input.clear:hover {
+  background-color: #ea5494;
+}
+
+button.export,
+button.import {
+  width: 34px;
+  height: 34px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #ddd;
+  color: #666;
+  cursor: pointer;
+}
+
+button.export:hover,
+button.import:hover,
+#import.dialog .form input[type="submit"]:hover {
+  background-color: #5988c9;
+}
+
+.action {
+  margin-top: 0.5em;
+}
+
+.dialog .form {
+  display: table;
+  position: fixed;
+  top: 30%;
+  left: 20%;
+  width: 60%;
+  height: 40%;
+  padding: 1.5em;
+  box-shadow: 2px 2px 5px #333;
+  background-color: #fff;
+  overflow: auto;
+  z-index: 100;
+}
+
+.dialog .form label {
+  display: table-row;
+  position: relative;
+  margin-bottom: 2em;
+  padding: 5px 0;
+}
+
+.dialog .form label span {
+  display: table-cell;
+  position: relative;
+  vertical-align: top;
+  width: 7rem;
+  margin-right: 1rem;
+  padding: 7px 0;
+}
+.dialog .form label span:after {
+  display: block;
+  content: ":";
+  float: right;
+  margin-right: 1rem;
+}
+
+.dialog .form input[type="text"],
+.dialog .form textarea {
+  display: table-cell;
+  width: calc(100% - 34px);
+  border-radius: 3px 0 0 3px;
+  border-right: none;
+}
+
+.dialog .form input,
+.dialog .form .copy {
+  height: 32px;
+}
+
+.dialog .form .http textarea,
+.dialog .form .http .copy {
+  height: 150px;
+  margin: 0;
+}
+
+.dialog .form .copy {
+  display: table-cell;
+  background-color: #ddd;
+  border: 1px solid #aaa;
+  border-radius: 0 3px 3px 0;
+  box-sizing: border-box;
+  height: 32px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.dialog .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% + 4em);
+  height: calc(100% + 4em);
+  margin-left: -2em;
+  margin-top: -2em;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+#import.dialog .form {
+  height: auto;
+}
+
+#import.dialog .form input[type="text"],
+#import.dialog .form textarea {
+  border-radius: 3px;
+  border-right: 1px solid #aaa;
+}
