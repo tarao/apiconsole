@@ -211,7 +211,7 @@ var ApiConsole = (function(d) {
         var headers = [];
         var lines = http.split(/\r?\n/);
 
-        var reqLine = /^([a-zA-Z])+ +([^ ]+) +HTTP\/[0-9.]+/;
+        var reqLine = /^([a-zA-Z]+) +([^ ]+) +HTTP\/[0-9.]+/;
         var m = reqLine.exec(lines[0] || '');
         if (m) {
             lines.shift();
