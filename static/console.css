@@ -42,7 +42,7 @@ textarea {
   font-family: monospace;
 }
 
-#container {
+#wrapper {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -349,4 +349,11 @@ button.import:hover,
 #import.dialog .form textarea {
   border-radius: 3px;
   border-right: 1px solid #aaa;
+}
+
+footer {
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  margin-top: 2em;
+  text-align: right;
 }
