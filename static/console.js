@@ -110,7 +110,7 @@ var ApiConsole = (function(d) {
                     return [ { name: path.join('.'), value: v } ];
                 }
             };
-            return getFields([], this.body);
+            return getFields([], this.body || {});
         } }
     });
     Request.prototype.send = function(callback) {
@@ -616,7 +616,7 @@ var ApiConsole = (function(d) {
                 return s.length > 0;
             });
             return appendField(r, path, stringToJsonValue(f.value));
-        }, null) || {};
+        }, null);
     }
 
     function throttle(f, threshold, scope) {
