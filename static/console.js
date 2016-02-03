@@ -118,6 +118,8 @@ var ApiConsole = (function(d) {
         xhr.open(this.method, this.url.toString());
 
         xhr.setRequestHeader('Accept', '*/*, text/html');
+        xhr.setRequestHeader('Pragma', 'no-cache');
+        xhr.setRequestHeader('Cache-Control', 'no-cache');
         (this.headers || []).forEach(function(h) {
             xhr.setRequestHeader(h.name, h.value);
         });
