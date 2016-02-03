@@ -42,7 +42,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	upstreamHandler := httputil.NewSingleHostReverseProxy(upstreamURL)
+	director := func(req *http.Request) {
+		req.URL.Scheme = upstreamURL.Scheme
+		req.URL.Host = upstreamURL.Host
+		req.Host = upstreamURL.Host
+	}
+	upstreamHandler := &httputil.ReverseProxy{Director: director}
 
 	go func() {
 		log.Printf("Console: http://localhost:%d%s/", *port, *mount)
