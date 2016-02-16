@@ -16,6 +16,12 @@
             '</body></html>'
         ].join("\n");
     };
+    var extractCharset = function(contentType) {
+        contentType = contentType || 'application/json; charset=UTF-8';
+        var m = /; *charset="?([^"; ]+)"?/.exec(contentType);
+        if (m) return m[1];
+        return 'UTF-8';
+    };
     var form = ApiConsole.form;
     var callback = function(url, xhr) {
         var ct = xhr.getResponseHeader('content-type') || '';
@@ -29,7 +35,8 @@
             throw 'JSON not highlighted';
         } catch (e) {
             var body = highlightJson(xhr.responseText);
-            form.requester.write(url, 'text/html', body);
+            var charset = extractCharset(xhr.getResponseHeader('Content-Type'));
+            form.requester.write(url, 'text/html; charset=' + charset, body);
         }
     };
     form.addEventListener('send', function(url, xhr) {
