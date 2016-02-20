@@ -339,7 +339,10 @@ var ApiConsole = (function(d) {
         var section = this.section(kind);
         var tmpl = section.querySelector('template');
         var parent = tmpl.parentNode;
-        var data = { name: name || '', value: value || '' };
+        var data = {
+            name: name || '',
+            value: (typeof value == 'undefined') ? '' : value + ''
+        };
         var nameNode = Template.render(tmpl, '.name', data);
         var valueNode = Template.render(tmpl, '.value', data);
         [ nameNode, valueNode ].forEach((function(self) { return function(x) {
