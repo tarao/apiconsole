@@ -1,4 +1,4 @@
-FROM golang:1.15.1 as builder
+FROM golang:1.15.3 as builder
 ENV APP_DIR /go/src/github.com/tarao/apiconsole
 
 WORKDIR ${APP_DIR}
