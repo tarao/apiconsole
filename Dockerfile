@@ -6,7 +6,7 @@ COPY . .
 ENV CGO_ENABLED 0
 RUN go get ./... && go build .
 
-FROM alpine:3.12.1
+FROM alpine:3.13.5
 ENV APP_DIR /go/src/github.com/tarao/apiconsole
 
 COPY --from=builder ${APP_DIR}/apiconsole /usr/local/bin/
